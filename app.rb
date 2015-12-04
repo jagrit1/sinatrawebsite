@@ -10,7 +10,11 @@ require 'omniauth-twitter'
 use OmniAuth::Builder do
   provider :twitter, 'C5fNcJabyRF43KLOPit2bVH6D', 'Ugi5aNjf7ajzFP4XEbBydd8LiPWVFg8WjDEKAKhlkwaFMfu4bA'
 end
-
+helpers do
+  def admin?
+    session[:admin]
+  end
+end
 enable :sessions
 
 
@@ -27,6 +31,18 @@ get "/blogs" do
   @posts = Post.order("created_at DESC")
   @title = "Welcome."
   erb :"posts/blogs"
+end
+
+get "/admin/adminblogs" do
+  @posts = Post.order("created_at DESC")
+  @title = "Welcome."
+  erb :"posts/admin/adminblogs"
+end
+
+get "/posts/admin/:id" do
+ @post = Post.find(params[:id])
+ @title = @post.title
+ erb :"/posts/admin/adminview"
 end
 
 helpers do
@@ -64,10 +80,25 @@ post "/posts" do
  end
 end
 
+get '/logout' do
+  session[:admin] = nil
+  "You are now logged out"
+end
+
+get '/auth/twitter/callback' do
+  env['omniauth.auth'] ? session[:admin] = true : halt(401,'Not Authorized')
+  @title = "Create post"
+  @post = Post.new
+  erb :"posts/manage"
+end
+get '/auth/failure' do
+  params[:message]
+end
+
 get "/posts/:id" do
  @post = Post.find(params[:id])
  @title = @post.title
- erb :"posts/adminview"
+ erb :"posts/view"
 end
 
 # edit post
@@ -76,17 +107,19 @@ get "/posts/:id/edit" do
   @title = "Edit Form"
   erb :"posts/edit"
 end
+
 put "/posts/:id" do
   @post = Post.find(params[:id])
   @post.update(params[:post])
-  redirect "/posts/#{@post.id}"
+  redirect "/posts/admin/#{@post.id}"
 end
+
 #delete post
 
 get '/posts/:id/delete' do
   @post = Post.find(params[:id])
   @post.delete
-  redirect "/blogs"
+  redirect "/admin/adminblogs"
 end
 
 get "/manage" do
@@ -102,36 +135,5 @@ end
 get '/contact_me' do
   erb :contact_me
 end
-
-
-configure do
-  enable :sessions
-end
-
-helpers do
-  def admin?
-    session[:admin]
-  end
-end
-
-get '/login' do
-  redirect to("/auth/twitter")
-end
-
-get '/logout' do
-  session[:admin] = nil
-  "You are now logged out"
-end
-
-get '/auth/twitter/callback' do
-  env['omniauth.auth'] ? session[:admin] = true : halt(401,'Not Authorized')
-   @title = "Create post"
-   @post = Post.new
-   erb :"posts/manage"
-end
-get '/auth/failure' do
-  params[:message]
-end
-
 
 
