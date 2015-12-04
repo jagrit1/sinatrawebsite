@@ -4,10 +4,10 @@ set :show_exceptions, true
 end
 
 configure :production do
- db = URI.parse(ENV['DATABASE_URL'] || 'sqlite:///localhost/mydb')
+ db = URI.parse(ENV['DATABASE_URL'] || 'postgresql:///localhost/mydb')
 
  ActiveRecord::Base.establish_connection(
-   :adapter  => db.scheme == 'sqlite3' ? 'sqlite3' : db.scheme,
+   :adapter  => db.scheme == 'postgresql' ? 'postgresql' : db.scheme,
    :host     => db.host,
    :username => db.user,
    :password => db.password,
