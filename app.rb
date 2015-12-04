@@ -49,19 +49,25 @@ get "/posts/manage" do
  redirect to("/auth/twitter")
 end
 
+get "/posts/create" do
+ @title = "Create post"
+ @post = Post.new
+ erb :"posts/create"
+end
+
 post "/posts" do
  @post = Post.new(params[:post])
  if @post.save
    redirect "posts/#{@post.id}", :notice => 'The blog has been successfully posted. (This message will disapear in 4 seconds.)'
  else
-   redirect "posts/manage", :error => 'Something has gone wrong. Try again. (This message will disapear in 4 seconds.)'
+   redirect "posts/create", :error => 'Something has gone wrong. Try again. (This message will disapear in 4 seconds.)'
  end
 end
 
 get "/posts/:id" do
  @post = Post.find(params[:id])
  @title = @post.title
- erb :"posts/view"
+ erb :"posts/adminview"
 end
 
 # edit post
@@ -80,7 +86,11 @@ end
 get '/posts/:id/delete' do
   @post = Post.find(params[:id])
   @post.delete
-  redirect "/"
+  redirect "/blogs"
+end
+
+get "/manage" do
+  erb :manage
 end
 
 get '/experience' do
@@ -92,6 +102,7 @@ end
 get '/contact_me' do
   erb :contact_me
 end
+
 
 configure do
   enable :sessions
