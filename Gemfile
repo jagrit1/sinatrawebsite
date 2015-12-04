@@ -1,7 +1,7 @@
 # Gemfile
 
 source 'https://rubygems.org'
-ruby "2.1.1"
+ruby "2.2.3"
 
 gem "sinatra"
 gem "activerecord"
