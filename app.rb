@@ -158,6 +158,3 @@ post '/contact/contact_me' do
 
         erb :contact_me
     end
-
-
-
