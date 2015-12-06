@@ -6,6 +6,7 @@ require './environments'
 require 'sinatra/flash'
 require 'sinatra/redirect_with_flash'
 require 'omniauth-twitter'
+require 'pony'
 
 use OmniAuth::Builder do
   provider :twitter, 'C5fNcJabyRF43KLOPit2bVH6D', 'Ugi5aNjf7ajzFP4XEbBydd8LiPWVFg8WjDEKAKhlkwaFMfu4bA'
@@ -80,6 +81,12 @@ post "/posts" do
  end
 end
 
+get "/posts/:id" do
+ @post = Post.find(params[:id])
+ @title = @post.title
+ erb :"posts/view"
+end
+
 get '/logout' do
   session[:admin] = nil
   "You are now logged out"
@@ -93,12 +100,6 @@ get '/auth/twitter/callback' do
 end
 get '/auth/failure' do
   params[:message]
-end
-
-get "/posts/:id" do
- @post = Post.find(params[:id])
- @title = @post.title
- erb :"posts/view"
 end
 
 # edit post
@@ -132,8 +133,31 @@ end
 get '/education' do
   erb :education
 end
-get '/contact_me' do
-  erb :contact_me
+
+get "/contact/contact_me" do
+ @title = "Create post"
+ @post = Post.new
+ erb :"contact/contact_me"
 end
+
+post "/contact" do
+ @post = Post.new(params[:post])
+ if @post.save
+   redirect "posts/#{@post.id}", :notice => 'The contact has been listed. (This message will disapear in 4 seconds.)'
+ else
+   redirect "posts/create", :error => 'Something has gone wrong. Try again. (This message will disapear in 4 seconds.)'
+ end
+end
+
+post '/contact/contact_me' do
+        name = params[:name]
+        mail = params[:email]
+        body = params[:body]
+
+        Pony.mail(:to => 'jaggywali@gmail.com', :from => "#{email}", :subject => "art inquiry from #{name}", :body => "#{body}")
+
+        erb :contact_me
+    end
+
 
 

@@ -1,7 +1,7 @@
 <ul>
 <% @posts.each do |post| %>
  <li>
-   <h4><a href="/posts/admin/adminblogs/<%= post.id %>"><%=h post.title %></a></h4>
+   <h4><a href="/contact/<%= post.id %>"><%=h post.name %><%=h post.email %></a></h4>
    <p>Created: <%=h post.created_at %></p>
  </li>
 <% end %>

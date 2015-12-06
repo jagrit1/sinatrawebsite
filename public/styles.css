@@ -4,7 +4,7 @@
     padding: 15px;
 }
 #profile {
-    font-size: 25px;
+    font-size: 20px;
     font-family:  Cambria;
 }
 
@@ -44,43 +44,42 @@ img{
 }
 h1{
     color:black;
-    background-color: #F5EEEE;
     font-family:  Cambria;
-    padding:  0% 33% 0% 33%;
     text-align: centre;
-    font-size: 50px;
+    font-size: 20px;
 }
 
+
 h2{
-    padding:  0% 38% 0% 38%;
+    padding:  0% 25% 4% 25%;
 }
 
 h3{
     color:black;
     background-color: none;
-    padding:  0% 38% 0% 38%;
+    padding:  0% 0% 0% 0%;
 
 }
 
 .person {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 10px;
     padding: 0px 10px 0px 10px;
 
 }
 
 ul.contact{
-    font-size: 25px;
+    font-size: 18px;
     background-color: ;
 }
 .education {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 10px;
     padding: 0px 10px 0px 10px;
 
 }
 .experience {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 10px;
     padding: 0px 10px 0px 10px;
 
@@ -96,16 +95,7 @@ ul.contact{
     clear: both;
 }
 
-footer{
-    color:white;
-    background-color: black;
-    font-family:  Cambria;
-    padding:  0% 38% 0% 38%;
-    margin-bottom: 20px;
-    line-height: 45px;
-    text-align: centre;
-    font-size: 14px;
-}
+
 /* Basic Grey */
  						.form {
             		margin-left:auto;
@@ -198,13 +188,4 @@ footer{
               text-align: center;
               font-size: 14px;
           }
-      body {
-        padding-top: 75px;
-      }
-      .starter-template {
-        padding: 40px 15px;
-        text-align: center;
-      }
-      .container {
-        max-width:750px;
-      }
+      
