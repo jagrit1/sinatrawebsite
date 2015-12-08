@@ -86,3 +86,6 @@ DEPENDENCIES
   sinatra-redirect-with-flash
   sqlite3
   tux
+
+BUNDLED WITH
+   1.10.6
