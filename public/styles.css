@@ -205,3 +205,17 @@ footer{
               font-size: 14px;
           }
       
+
+    
+      body {
+        background-color: #F5EEEE;
+        padding-top: 75px;
+      }
+      .starter-template {
+        padding: 40px 15px;
+        text-align: center;
+      }
+      .container {
+        max-width:70%;
+      }
+    
