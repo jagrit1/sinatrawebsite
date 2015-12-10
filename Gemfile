@@ -11,6 +11,7 @@ gem "sinatra-redirect-with-flash"
 gem "omniauth-twitter"
 gem "pony"
 gem 'pg'
+gem 'bootstrap-sass'
 
 
 group :development do
