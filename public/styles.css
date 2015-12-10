@@ -25,10 +25,10 @@ body{
 }
 img{
     float: left;
-    height: 350px;
-    width: 275px;
-    border-radius: 100px;
-    padding:0px 30px 10px 0px;  
+    height: 300px;
+    width: 300px;
+    border-radius: 10000px;
+    padding:30px 30px 30px 30px;  
 }
 
 #menu ul{
