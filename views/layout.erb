@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!---->
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -20,6 +20,8 @@
         max-width:70%;
       }
     </style>
+    <link rel="stylesheet" href="/styles.css">
+
   </head>
 
   <body>
@@ -57,6 +59,7 @@
       <% if flash[:error] %>
         <p class="alert alert-warning"><%= flash[:error] %>
       <% end %>
+
       <%= yield %>
 
     </div><!-- /.container -->
