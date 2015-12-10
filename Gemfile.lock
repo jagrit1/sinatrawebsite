@@ -37,8 +37,6 @@ GEM
     pg (0.18.4)
     pony (1.11)
       mail (>= 2.0)
-    postgres (0.8.1)
-      pg (~> 0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -80,8 +78,8 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   omniauth-twitter
+  pg
   pony
-  postgres
   sinatra
   sinatra-activerecord
   sinatra-flash
