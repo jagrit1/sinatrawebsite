@@ -2,7 +2,22 @@
 <br/>
 <form action="//formspree.io/jaggywali@gmail.com"
       method="POST">
-    <input type="text" name="name">
-    <input type="email" name="_replyto">
-    <input type="submit" value="Send">
+	<div class="form-group">
+   <label for="post_title">Name:</label>
+   <br>
+   <input id="name" class="form-control" name="name" type="text" value="<%= @post.title %>" style="width=75%"/>
+ 	</div>
+
+	<div class="form-group">
+   <label for="post_title">Email:</label>
+   <br>
+   <input id="email" class="form-control" name="_replyto" type="email" value="<%= @post.title %>" style="width=75%"/>
+ </div>
+
+ <div class="form-group">
+   <label for="post_body">Message:</label>
+   <br>
+   <textarea id="post_body" name="message" class="form-control" rows="10"><%= @post.body %></textarea>
+ </div>
+ <button type="submit" value="Send" class="btn btn-success">Submit</button>
 </form>
